@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="0K7-JN-4wE">
+                                <rect key="frame" x="0.0" y="497" width="320" height="71"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerBall" id="xPQ-NV-TJy">
+                                        <rect key="frame" x="20" y="14" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="60e-TY-UmK" appends="YES" id="oK0-zL-ggl"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerPlayer" id="60E-Nx-bPl">
+                                        <rect key="frame" x="178" y="14" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hls-cI-as1" appends="YES" id="hcr-NC-MWB"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goal" id="BqB-dq-V4d">
+                                        <rect key="frame" x="256" y="14" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Bp9-FY-KQd" appends="YES" id="icf-rx-YMY"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleat" id="RSa-8i-oez">
+                                        <rect key="frame" x="98" y="14" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Kox-1M-f1d" appends="YES" id="jOx-d5-3gf"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86694144350777957" green="0.927603624323173" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.79046708189637016" green="1" blue="0.60705079270688478" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="cleatImage" destination="RSa-8i-oez" id="uzA-9D-fD4"/>
+                        <outlet property="goalImage" destination="BqB-dq-V4d" id="I8V-Zd-s7Q"/>
+                        <outlet property="imagesContainer" destination="0K7-JN-4wE" id="juW-Xu-4ig"/>
+                        <outlet property="soccerImage" destination="xPQ-NV-TJy" id="q8w-k1-6g6"/>
+                        <outlet property="soccerPlayerImage" destination="60E-Nx-bPl" id="Z7k-uZ-Cnj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="60e-TY-UmK">
+                    <connections>
+                        <action selector="onSoccerPanGesture:" destination="vXZ-lx-hvc" id="uwJ-ij-g1i"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Kox-1M-f1d">
+                    <connections>
+                        <action selector="onCleatPanGesture:" destination="vXZ-lx-hvc" id="eUl-LT-pqg"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="hls-cI-as1">
+                    <connections>
+                        <action selector="onSoccerPlayerGesture:" destination="vXZ-lx-hvc" id="gYd-dN-3sp"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Bp9-FY-KQd">
+                    <connections>
+                        <action selector="onGoalGesture:" destination="vXZ-lx-hvc" id="nVJ-Ma-WUQ"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cleat" width="600" height="600"/>
+        <image name="goal" width="600" height="600"/>
+        <image name="soccerBall" width="600" height="600"/>
+        <image name="soccerPlayer" width="600" height="600"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
