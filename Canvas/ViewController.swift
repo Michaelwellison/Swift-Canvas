@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     var originalSoccerPlayerImageY = CGFloat(0.0)
     var originalGoalImageX = CGFloat(0.0)
     var originalGoalImageY = CGFloat(0.0)
+    var newPanGesture : UIPanGestureRecognizer?
+    
     
     
     
@@ -38,8 +40,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         configureImageBarScrollView()
         configureImageContainer()
+        
+        
+        
     }
     
     // MARK: Configuration
@@ -52,18 +59,22 @@ class ViewController: UIViewController {
         var fieldImageView = UIImageView(frame: CGRect(x: 340, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
         var fieldImage = UIImage(named: "field")
         fieldImageView.image = fieldImage
+        fieldImageView.userInteractionEnabled = true
         
         var soccerPlayerAndBallImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 70, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
         var soccerPlayerAndBallImage = UIImage(named: "soccerPlayerAndBall")
         soccerPlayerAndBallImageView.image = soccerPlayerAndBallImage
+        soccerPlayerAndBallImageView.userInteractionEnabled = true
         
         var stadiumImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 140, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
         var stadiumImage = UIImage(named: "stadium")
         stadiumImageView.image = stadiumImage
+        stadiumImageView.userInteractionEnabled = true
         
         var trophyImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 210, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
         var trophyImage = UIImage(named: "trophy")
         trophyImageView.image = trophyImage
+        trophyImageView.userInteractionEnabled = true
         
         imagesContainer.addSubview(fieldImageView)
         imagesContainer.addSubview(soccerPlayerAndBallImageView)
@@ -93,10 +104,11 @@ class ViewController: UIViewController {
             
             var soccerImage2 = UIImage(named: "soccerBall")
             newImageView!.image = soccerImage2
+            newImageView!.userInteractionEnabled = true
             imagesContainer.addSubview(newImageView)
             
-            var newPanGesture = UIPanGestureRecognizer()
-            
+            var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
+            newImageView!.addGestureRecognizer(newPanGesture)
         
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
@@ -126,7 +138,34 @@ class ViewController: UIViewController {
     }
     
     
-    
+    func onNewPan(panGestureRecognizer: UIPanGestureRecognizer) {
+
+        var translation = panGestureRecognizer.translationInView(view)
+        var location = panGestureRecognizer.locationInView(view);
+        
+        
+        var originalImageViewX = newImageView!.frame.origin.x
+        var originalImageViewY = newImageView!.frame.origin.y
+        
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
+            println("New gesture Began")
+            
+
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
+            println("Gesture changed")
+            
+            newImageView!.frame = CGRectMake(originalImageViewX + translation.x, originalImageViewY + translation.y, newImageView!.frame.width, newImageView!.frame.height)
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            println("Gesture ended")
+            newImageView!.frame.size = CGSize(width: soccerImage.frame.width * 1.2, height: soccerImage.frame.height * 1.2)
+            
+            println(location)
+            
+        }
+        
+    }
     
     
     override func didReceiveMemoryWarning() {
