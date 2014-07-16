@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet var soccerPlayerImage: UIImageView
     @IBOutlet var goalImage: UIImageView
     @IBOutlet var imagesContainer: UIView
+    @IBOutlet var imageBarScrollView: UIScrollView
+    
     
     var originalSoccerImageX = CGFloat(0.0)
     var originalSoccerImageY = CGFloat(0.0)
@@ -31,10 +33,19 @@ class ViewController: UIViewController {
     
     var newImageView : UIImageView?
     
+    // MARK: View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureImageBarScrollView()
     }
+    
+    // MARK: Configuration
 
+    func configureImageBarScrollView() {
+        imageBarScrollView.contentSize = CGSize(width: 640, height: 70)
+    }
     
     // MARK: Actions
     
