@@ -39,6 +39,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         configureImageBarScrollView()
+        configureImageContainer()
     }
     
     // MARK: Configuration
@@ -47,17 +48,36 @@ class ViewController: UIViewController {
         imageBarScrollView.contentSize = CGSize(width: 640, height: 70)
     }
     
+    func configureImageContainer() {
+        var fieldImageView = UIImageView(frame: CGRect(x: 340, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
+        var fieldImage = UIImage(named: "field")
+        fieldImageView.image = fieldImage
+        
+        var soccerPlayerAndBallImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 70, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
+        var soccerPlayerAndBallImage = UIImage(named: "soccerPlayerAndBall")
+        soccerPlayerAndBallImageView.image = soccerPlayerAndBallImage
+        
+        var stadiumImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 140, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
+        var stadiumImage = UIImage(named: "stadium")
+        stadiumImageView.image = stadiumImage
+        
+        var trophyImageView = UIImageView(frame: CGRect(x: fieldImageView.frame.origin.x + 210, y: soccerImage.frame.origin.y, width: soccerImage.frame.width, height: soccerImage.frame.height))
+        var trophyImage = UIImage(named: "trophy")
+        trophyImageView.image = trophyImage
+        
+        imagesContainer.addSubview(fieldImageView)
+        imagesContainer.addSubview(soccerPlayerAndBallImageView)
+        imagesContainer.addSubview(stadiumImageView)
+        imagesContainer.addSubview(trophyImageView)
+        
+    }
+    
     // MARK: Actions
     
     @IBAction func onSoccerPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
         
         var translation = panGestureRecognizer.translationInView(view)
         var location = panGestureRecognizer.locationInView(view);
-        
-
-        
-        
-        //println("location.x \(location.x), translation.x \(translation.x)")
         
         if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
             println("Gesture began")
@@ -86,7 +106,6 @@ class ViewController: UIViewController {
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
             newImageView!.frame.size = CGSize(width: soccerImage.frame.width, height: soccerImage.frame.height)
-            
             
             println(location)
             
