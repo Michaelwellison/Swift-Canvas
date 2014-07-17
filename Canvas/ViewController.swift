@@ -94,7 +94,8 @@ class ViewController: UIViewController {
             println("Gesture began")
             
             originalSoccerImageX = soccerImage.frame.origin.x
-            originalSoccerImageY = soccerImage.frame.origin.y
+            originalSoccerImageY = soccerImage.frame.origin.y + imageBarScrollView.frame.origin.y
+            
             
             println(soccerImage.frame.origin)
             
@@ -105,10 +106,12 @@ class ViewController: UIViewController {
             var soccerImage2 = UIImage(named: "soccerBall")
             newImageView!.image = soccerImage2
             newImageView!.userInteractionEnabled = true
-            imagesContainer.addSubview(newImageView)
+            view.addSubview(newImageView)
             
             var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
             newImageView!.addGestureRecognizer(newPanGesture)
+            
+        
         
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
@@ -143,6 +146,9 @@ class ViewController: UIViewController {
         var translation = panGestureRecognizer.translationInView(view)
         var location = panGestureRecognizer.locationInView(view);
         
+        originalSoccerImageX = soccerImage.frame.origin.x
+        originalSoccerImageY = soccerImage.frame.origin.y + imageBarScrollView.frame.origin.y
+        
         
         var originalImageViewX = newImageView!.frame.origin.x
         var originalImageViewY = newImageView!.frame.origin.y
@@ -150,7 +156,7 @@ class ViewController: UIViewController {
         if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
             println("New gesture Began")
             
-
+            
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
@@ -160,6 +166,8 @@ class ViewController: UIViewController {
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
             newImageView!.frame.size = CGSize(width: soccerImage.frame.width * 1.2, height: soccerImage.frame.height * 1.2)
+            
+            
             
             println(location)
             
