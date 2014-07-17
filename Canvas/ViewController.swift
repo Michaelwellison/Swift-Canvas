@@ -115,8 +115,10 @@ class ViewController: UIViewController {
         
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
+            
+            newImageView!.center = location
            
-            newImageView!.frame = CGRectMake(originalSoccerImageX + translation.x, originalSoccerImageY + translation.y, newImageView!.frame.size.width, newImageView!.frame.size.height)
+//            newImageView!.frame = CGRectMake(originalSoccerImageX + translation.x, originalSoccerImageY + translation.y, newImageView!.frame.size.width, newImageView!.frame.size.height)
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
@@ -156,17 +158,24 @@ class ViewController: UIViewController {
         if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
             println("New gesture Began")
             
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        })
+        
             
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
+            newImageView!.center = location
             
-            newImageView!.frame = CGRectMake(originalImageViewX + translation.x, originalImageViewY + translation.y, newImageView!.frame.width, newImageView!.frame.height)
+     //       newImageView!.frame = CGRectMake(originalImageViewX + translation.x, originalImageViewY + translation.y, newImageView!.frame.width, newImageView!.frame.height)
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
-            newImageView!.frame.size = CGSize(width: soccerImage.frame.width * 1.2, height: soccerImage.frame.height * 1.2)
             
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
             
             
             println(location)
