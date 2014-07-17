@@ -101,7 +101,7 @@ class ViewController: UIViewController {
             
             newImageView = UIImageView()
             
-            newImageView!.frame = CGRectMake(soccerImage.frame.origin.x, soccerImage.frame.origin.y, soccerImage.frame.width * 1.2, soccerImage.frame.height * 1.2)
+           newImageView!.frame = CGRectMake(soccerImage.frame.origin.x, soccerImage.frame.origin.y, soccerImage.frame.width * 1.2, soccerImage.frame.height * 1.2)
             
             var soccerImage2 = UIImage(named: "soccerBall")
             newImageView!.image = soccerImage2
@@ -111,21 +111,18 @@ class ViewController: UIViewController {
             var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
             newImageView!.addGestureRecognizer(newPanGesture)
             
-        
-        
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
             
             newImageView!.center = location
            
-//            newImageView!.frame = CGRectMake(originalSoccerImageX + translation.x, originalSoccerImageY + translation.y, newImageView!.frame.size.width, newImageView!.frame.size.height)
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
-            newImageView!.frame.size = CGSize(width: soccerImage.frame.width, height: soccerImage.frame.height)
             
-            println(location)
-            
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
         }
     }
   
@@ -146,29 +143,19 @@ class ViewController: UIViewController {
     func onNewPan(panGestureRecognizer: UIPanGestureRecognizer) {
 
         var translation = panGestureRecognizer.translationInView(view)
-        var location = panGestureRecognizer.locationInView(view);
-        
-        originalSoccerImageX = soccerImage.frame.origin.x
-        originalSoccerImageY = soccerImage.frame.origin.y + imageBarScrollView.frame.origin.y
-        
-        
-        var originalImageViewX = newImageView!.frame.origin.x
-        var originalImageViewY = newImageView!.frame.origin.y
+        var location = panGestureRecognizer.locationInView(view)
         
         if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
             println("New gesture Began")
             
             UIView.animateWithDuration(0.1, animations: {
                 self.newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
-        })
-        
-            
+                })
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
             newImageView!.center = location
-            
-     //       newImageView!.frame = CGRectMake(originalImageViewX + translation.x, originalImageViewY + translation.y, newImageView!.frame.width, newImageView!.frame.height)
+ 
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
@@ -176,12 +163,7 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(0.1, animations: {
                 self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
                 })
-            
-            
-            println(location)
-            
         }
-        
     }
     
     
