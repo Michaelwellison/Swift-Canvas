@@ -30,22 +30,17 @@ class ViewController: UIViewController {
     var originalGoalImageY = CGFloat(0.0)
     var newPanGesture : UIPanGestureRecognizer?
     
+ //   var imageDictionary : <NSValue , UIImageView>
     
-    
-    
-    var newImageView : UIImageView?
-    
+   var newImageView : UIImageView?
+
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         configureImageBarScrollView()
         configureImageContainer()
-        
-        
         
     }
     
@@ -101,7 +96,9 @@ class ViewController: UIViewController {
             
             newImageView = UIImageView()
             
-           newImageView!.frame = CGRectMake(soccerImage.frame.origin.x, soccerImage.frame.origin.y, soccerImage.frame.width * 1.2, soccerImage.frame.height * 1.2)
+           newImageView!.frame = CGRectMake(soccerImage.frame.origin.x, soccerImage.frame.origin.y, soccerImage.frame.width, soccerImage.frame.height)
+            
+            newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
             
             var soccerImage2 = UIImage(named: "soccerBall")
             newImageView!.image = soccerImage2
@@ -110,6 +107,12 @@ class ViewController: UIViewController {
             
             var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
             newImageView!.addGestureRecognizer(newPanGesture)
+            
+            var newPinchGesture = UIPinchGestureRecognizer(target: self, action: "onNewPinch:")
+            newImageView!.addGestureRecognizer(newPinchGesture)
+            
+            var newRotationGesture = UIRotationGestureRecognizer(target: self, action: "onNewRotation:")
+            newImageView!.addGestureRecognizer(newRotationGesture)
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
             println("Gesture changed")
@@ -164,6 +167,18 @@ class ViewController: UIViewController {
                 self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
                 })
         }
+    }
+    
+    func onNewPinch(pinchGestureRecognizer: UIPinchGestureRecognizer) {
+        
+        newImageView!.transform = CGAffineTransformMakeScale(pinchGestureRecognizer.scale, pinchGestureRecognizer.scale)
+    }
+    
+    
+    
+    func onNewRotation(rotationGestureRecognizer: UIRotationGestureRecognizer) {
+        
+        newImageView!.transform = CGAffineTransformMakeRotation(rotationGestureRecognizer.rotation)
     }
     
     
