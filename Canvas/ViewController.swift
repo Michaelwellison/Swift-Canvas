@@ -78,6 +78,7 @@ class ViewController: UIViewController {
         imagesContainer.addSubview(stadiumImageView)
         imagesContainer.addSubview(trophyImageView)
         
+        
         imagesContainer.hidden = true
         
     }
@@ -91,12 +92,6 @@ class ViewController: UIViewController {
         
         if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
             println("Gesture began")
-            
-            originalSoccerImageX = soccerImage.frame.origin.x
-            originalSoccerImageY = soccerImage.frame.origin.y + imageBarScrollView.frame.origin.y
-            
-            
-            println(soccerImage.frame.origin)
             
             newImageView = UIImageView()
             
@@ -132,17 +127,134 @@ class ViewController: UIViewController {
                 })
         }
     }
-  
     
     @IBAction func onCleatPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
+        var translation = panGestureRecognizer.translationInView(view)
+        var location = panGestureRecognizer.locationInView(view);
+        
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
+            println("Gesture began")
+            
+            newImageView = UIImageView()
+            
+            newImageView!.frame = CGRectMake(cleatImage.frame.origin.x, cleatImage.frame.origin.y, cleatImage.frame.width, cleatImage.frame.height)
+            
+            newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            
+            var cleatImage2 = UIImage(named: "cleat")
+            newImageView!.image = cleatImage2
+            newImageView!.userInteractionEnabled = true
+            view.addSubview(newImageView)
+            
+            var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
+            newImageView!.addGestureRecognizer(newPanGesture)
+            
+            var newPinchGesture = UIPinchGestureRecognizer(target: self, action: "onNewPinch:")
+            newImageView!.addGestureRecognizer(newPinchGesture)
+            
+            var newRotationGesture = UIRotationGestureRecognizer(target: self, action: "onNewRotation:")
+            newImageView!.addGestureRecognizer(newRotationGesture)
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
+            println("Gesture changed")
+            
+            newImageView!.center = location
+            
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            println("Gesture ended")
+            
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
+        }
         
     }
 
     @IBAction func onSoccerPlayerGesture(panGestureRecognizer: UIPanGestureRecognizer) {
+        var translation = panGestureRecognizer.translationInView(view)
+        var location = panGestureRecognizer.locationInView(view);
         
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
+            println("Gesture began")
+            
+            newImageView = UIImageView()
+            
+            newImageView!.frame = CGRectMake(soccerPlayerImage.frame.origin.x, soccerPlayerImage.frame.origin.y, soccerPlayerImage.frame.width, soccerPlayerImage.frame.height)
+            
+            newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            
+            var soccerPlayerImage2 = UIImage(named: "soccerPlayer")
+            newImageView!.image = soccerPlayerImage2
+            newImageView!.userInteractionEnabled = true
+            view.addSubview(newImageView)
+            
+            var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
+            newImageView!.addGestureRecognizer(newPanGesture)
+            
+            var newPinchGesture = UIPinchGestureRecognizer(target: self, action: "onNewPinch:")
+            newImageView!.addGestureRecognizer(newPinchGesture)
+            
+            var newRotationGesture = UIRotationGestureRecognizer(target: self, action: "onNewRotation:")
+            newImageView!.addGestureRecognizer(newRotationGesture)
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
+            println("Gesture changed")
+            
+            newImageView!.center = location
+            
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            println("Gesture ended")
+            
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
+        }
     }
 
     @IBAction func onGoalGesture(panGestureRecognizer: UIPanGestureRecognizer) {
+        var translation = panGestureRecognizer.translationInView(view)
+        var location = panGestureRecognizer.locationInView(view);
+        
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
+            println("Gesture began")
+            
+            newImageView = UIImageView()
+            
+            newImageView!.frame = CGRectMake(goalImage.frame.origin.x, goalImage.frame.origin.y, goalImage.frame.width, goalImage.frame.height)
+            
+            newImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            
+            var goalImage2 = UIImage(named: "goal")
+            newImageView!.image = goalImage2
+            newImageView!.userInteractionEnabled = true
+            view.addSubview(newImageView)
+            
+            var newPanGesture = UIPanGestureRecognizer(target: self, action: "onNewPan:")
+            newImageView!.addGestureRecognizer(newPanGesture)
+            
+            var newPinchGesture = UIPinchGestureRecognizer(target: self, action: "onNewPinch:")
+            newImageView!.addGestureRecognizer(newPinchGesture)
+            
+            var newRotationGesture = UIRotationGestureRecognizer(target: self, action: "onNewRotation:")
+            newImageView!.addGestureRecognizer(newRotationGesture)
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
+            println("Gesture changed")
+            
+            newImageView!.center = location
+            
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            println("Gesture ended")
+            
+            UIView.animateWithDuration(0.1, animations: {
+                self.newImageView!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
+        }
+        
+        
         
     }
     
@@ -178,8 +290,6 @@ class ViewController: UIViewController {
         newImageView!.transform = CGAffineTransformMakeScale(pinchGestureRecognizer.scale, pinchGestureRecognizer.scale)
     }
     
-    
-    
     func onNewRotation(rotationGestureRecognizer: UIRotationGestureRecognizer) {
         
         println("what")
@@ -211,10 +321,7 @@ class ViewController: UIViewController {
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
             println("Gesture ended")
-           
         }
-
-        
         
     }
 
