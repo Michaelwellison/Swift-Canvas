@@ -294,6 +294,7 @@ class ViewController: UIViewController {
         
         println("what")
         newImageView!.transform = CGAffineTransformMakeRotation(rotationGestureRecognizer.rotation)
+        
     }
     
     @IBAction func onSoccerPlayerPan(panGestureRecognizer: UIPanGestureRecognizer) {
