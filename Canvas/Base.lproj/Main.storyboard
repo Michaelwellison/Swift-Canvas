@@ -57,6 +57,18 @@
                                     </view>
                                 </subviews>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ycN-Sa-qwY">
+                                <rect key="frame" x="110" y="480" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <state key="normal" backgroundImage="soccerPlayer">
+                                    <color key="titleColor" red="0.6823772182910488" green="0.43321521500617843" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="7yO-aj-y0x" appends="YES" id="QaS-hP-4HZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.79046708189637016" green="1" blue="0.60705079270688478" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -66,6 +78,7 @@
                         <outlet property="imageBarScrollView" destination="Hz2-Wu-SYZ" id="iVA-97-Hcj"/>
                         <outlet property="imagesContainer" destination="0K7-JN-4wE" id="juW-Xu-4ig"/>
                         <outlet property="soccerImage" destination="xPQ-NV-TJy" id="q8w-k1-6g6"/>
+                        <outlet property="soccerPlayerButton" destination="ycN-Sa-qwY" id="W4v-ng-afA"/>
                         <outlet property="soccerPlayerImage" destination="60E-Nx-bPl" id="Z7k-uZ-Cnj"/>
                     </connections>
                 </viewController>
@@ -88,6 +101,11 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Bp9-FY-KQd">
                     <connections>
                         <action selector="onGoalGesture:" destination="vXZ-lx-hvc" id="nVJ-Ma-WUQ"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="7yO-aj-y0x">
+                    <connections>
+                        <action selector="onSoccerPlayerPan:" destination="vXZ-lx-hvc" id="7uY-Gr-xdO"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

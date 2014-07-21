@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet var goalImage: UIImageView
     @IBOutlet var imagesContainer: UIView
     @IBOutlet var imageBarScrollView: UIScrollView
+    @IBOutlet var soccerPlayerButton: UIButton
+    
     
     
     var originalSoccerImageX = CGFloat(0.0)
@@ -75,6 +77,8 @@ class ViewController: UIViewController {
         imagesContainer.addSubview(soccerPlayerAndBallImageView)
         imagesContainer.addSubview(stadiumImageView)
         imagesContainer.addSubview(trophyImageView)
+        
+        imagesContainer.hidden = true
         
     }
     
@@ -178,9 +182,42 @@ class ViewController: UIViewController {
     
     func onNewRotation(rotationGestureRecognizer: UIRotationGestureRecognizer) {
         
+        println("what")
         newImageView!.transform = CGAffineTransformMakeRotation(rotationGestureRecognizer.rotation)
     }
     
+    @IBAction func onSoccerPlayerPan(panGestureRecognizer: UIPanGestureRecognizer) {
+        var translation = panGestureRecognizer.translationInView(view)
+        var location = panGestureRecognizer.locationInView(view)
+        
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Began) {
+            println("New gesture Began")
+            
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Changed) {
+            println("Gesture changed")
+            soccerPlayerButton.center = location
+            
+            
+            if soccerPlayerButton.frame.origin.y + soccerPlayerButton.frame.height <= imageBarScrollView.frame.origin.y {
+                
+                UIView.animateWithDuration(0.5, animations: {
+                                        })
+                self.imagesContainer.hidden = false
+                self.soccerPlayerButton.hidden = true
+                panGestureRecognizer.enabled = false
+            }
+            
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            println("Gesture ended")
+           
+        }
+
+        
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
